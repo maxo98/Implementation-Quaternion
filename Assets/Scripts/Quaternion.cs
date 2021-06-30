@@ -27,6 +27,12 @@ public struct Quaternion : IEquatable<Quaternion> {
 
     public static Quaternion Identity { get; } = new Quaternion(0, 0, 0, 1);
 
+    /// <summary>
+    /// Addition de 2 Quaternion
+    /// </summary>
+    /// <param name="quaternion1"> 1er Quaternion</param>
+    /// <param name="quaternion2"> 2e Quaternion</param>
+    /// <returns></returns>
     public static Quaternion Add(Quaternion quaternion1, Quaternion quaternion2)
     {
         Quaternion quaternion;
@@ -36,7 +42,12 @@ public struct Quaternion : IEquatable<Quaternion> {
         quaternion._w = quaternion1._w + quaternion2._w;
         return quaternion;
     }
-
+    /// <summary>
+    /// Surchage Addition de Quaternion avec out
+    /// </summary>
+    /// <param name="quaternion1"></param>
+    /// <param name="quaternion2"></param>
+    /// <param name="result"></param>
     public static void Add(ref Quaternion quaternion1, ref Quaternion quaternion2, out Quaternion result)
     {
         result._x = quaternion1._x + quaternion2._x;
@@ -111,7 +122,12 @@ public struct Quaternion : IEquatable<Quaternion> {
         result._z = -value._z;
         result._w = value._w;
     }
-
+    /// <summary>
+    /// Creation de Quaternion avec un axe en Vector3 et un angle en double
+    /// </summary>
+    /// <param name="axis"></param>
+    /// <param name="angle"></param>
+    /// <returns></returns>
     public static Quaternion CreateFromAxisAngle(Vector3 axis, double angle)
     {
         Quaternion quaternion;
@@ -125,7 +141,12 @@ public struct Quaternion : IEquatable<Quaternion> {
         return quaternion;
 
     }
-
+    /// <summary>
+    /// Surcharge Creation de Quaternion avec un axe en Vector3 et un angle en double
+    /// </summary>
+    /// <param name="axis"></param>
+    /// <param name="angle"></param>
+    /// <param name="result"></param>
     public static void CreateFromAxisAngle(ref Vector3 axis, double angle, out Quaternion result)
     {
         double num2 = angle * 0.5f;
