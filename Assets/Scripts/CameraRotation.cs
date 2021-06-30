@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Caracter_move : MonoBehaviour
+public class CameraRotation : MonoBehaviour
 {
-    public CharacterController myController;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,10 +13,6 @@ public class Caracter_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            myController.Move(transform.forward);
-        }
         
     }
 }
