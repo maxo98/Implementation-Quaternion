@@ -6,35 +6,33 @@ public class CharacterMove : MonoBehaviour
 {
     public CharacterController myController;
     public MeshFilter myMesh;
-    Vector3[] origVerts;
-    Vector3[] newVerts;
-    Matrix4x4 m;
+    private Vector3[] _origVerts;
+    private Vector3[] _newVerts;
+    private Matrix4x4 _m;
     void Start()
     {
         myMesh = GetComponent<MeshFilter>();
-        origVerts = myMesh.mesh.vertices;
-        newVerts = new Vector3[origVerts.Length];
+        _origVerts = myMesh.mesh.vertices;
+        _newVerts = new Vector3[_origVerts.Length];
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            m = Quaternion.ToMatrix(Quaternion.CreateFromAxisAngle(ref transform.forward, 50f, out Quaternion result ), out m);
-            Quaternion.ToMatrix()
+            var quat = Quaternion.CreateFromAxisAngle(transform.forward, 50f);
 
             // For each vertex...
-            for (int i = 0; i < origVerts.Length; i++)
+            for (var i = 0; i < _origVerts.Length; i++)
             {
                 // Apply the matrix to the vertex.
-                newVerts[i] = m.MultiplyPoint3x4(origVerts[i]);
+                _newVerts[i] = _m.MultiplyPoint3x4(_origVerts[i]);
             }
 
             // Copy the transformed vertices back to the mesh.
-            mf.mesh.vertices = newVerts;
-
-            transform.rotation = Quaternion.ToMatrix(Quaternion.CreateFromAxisAngle(transform.forward, 50f));
+            myMesh.mesh.vertices = _newVerts;
+            
         }
         
     }
