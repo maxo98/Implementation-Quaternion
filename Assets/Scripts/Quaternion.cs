@@ -762,7 +762,7 @@ public struct Quaternion : IEquatable<Quaternion> {
         return matrix;
     }
 
-    private void ToMatrix(out Matrix4x4 matrix)
+    internal void ToMatrix(out Matrix4x4 matrix)
     {
         ToMatrix(this, out matrix);
     }
