@@ -11,6 +11,8 @@ public class CharacterMove : MonoBehaviour
     private Vector3[] _origVerts;
     private Vector3[] _newVerts;
     private Matrix4x4 _m;
+
+    public float speed = 3f;
     
     void Start()
     {
@@ -30,7 +32,7 @@ public class CharacterMove : MonoBehaviour
             {
                 angle = 5;
             }
-            Controller.Move(transform.forward * Time.deltaTime);
+            Controller.Move(transform.forward * Time.deltaTime * speed);
         }
 
         if (Input.GetKey(KeyCode.S))
@@ -41,24 +43,24 @@ public class CharacterMove : MonoBehaviour
                 angle = 10;
             }
             
-            Controller.Move(-transform.forward * Time.deltaTime);
+            Controller.Move(-transform.forward * Time.deltaTime * speed);
         }
         
         if (Input.GetKey(KeyCode.Q))
         {
             angle -= 5f * Time.deltaTime;
             angle = Mathf.Clamp((float)angle, 3.5f, 6.5f);
-            Controller.Move(-transform.right * Time.deltaTime);
+            Controller.Move(-transform.right * Time.deltaTime * speed);
 
         }
         else if (Input.GetKey(KeyCode.D))
         {
             angle += 5f * Time.deltaTime;
             angle = Mathf.Clamp((float)angle, 3.5f, 6.5f);
-            Controller.Move(transform.right * Time.deltaTime);
+            Controller.Move(transform.right * Time.deltaTime * speed);
             
         }
-
+        
         RotateFromAxis(transform.up);
         UpdateMesh();
         
